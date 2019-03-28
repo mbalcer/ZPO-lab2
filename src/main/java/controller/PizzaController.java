@@ -5,10 +5,13 @@ import attachments.Pizza;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PizzaController {
 
-    private Integer pricePizza(Pizza pizza) {
+    private static Integer pricePizza(Pizza pizza) {
         return pizza.getIngredients()
                 .stream()
                 .mapToInt(Ingredient::getPrice)
@@ -31,5 +34,10 @@ public class PizzaController {
                         .noneMatch(Ingredient::isMeat))
                 .max(Comparator.comparingInt(pizza -> pricePizza(pizza)))
                 .get();
+    }
+
+    public Map groupByPrice() {
+        return Arrays.stream(Pizza.values())
+                .collect(Collectors.groupingBy(PizzaController::pricePizza));
     }
 }

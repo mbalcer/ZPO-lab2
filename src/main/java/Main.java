@@ -1,3 +1,4 @@
+import attachments.Pizza;
 import controller.PizzaController;
 
 public class Main {
@@ -6,5 +7,6 @@ public class Main {
 
         System.out.println(pizzaController.findCheapestSpicy());
         System.out.println(pizzaController.findMostExpensiveVegetarian());
+        System.out.println(pizzaController.groupByPrice());
     }
 }
