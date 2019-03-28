@@ -36,6 +36,23 @@ public class PizzaController {
                 .get();
     }
 
+    public List iLikeMeat() {
+        return Arrays.stream(Pizza.values())
+                .filter(pizza -> pizza.getIngredients()
+                        .stream()
+                        .anyMatch(Ingredient::isMeat))
+                .sorted((o1, o2) ->
+                        (int) o2.getIngredients()
+                                .stream()
+                                .filter( Ingredient::isMeat)
+                                .count()
+                                - (int) o1.getIngredients()
+                                .stream()
+                                .filter(Ingredient::isMeat)
+                                .count())
+                .collect(Collectors.toList());
+    }
+
     public Map groupByPrice() {
         return Arrays.stream(Pizza.values())
                 .collect(Collectors.groupingBy(PizzaController::pricePizza));

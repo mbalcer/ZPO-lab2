@@ -7,6 +7,7 @@ public class Main {
 
         System.out.println(pizzaController.findCheapestSpicy());
         System.out.println(pizzaController.findMostExpensiveVegetarian());
+        System.out.println(pizzaController.iLikeMeat());
         System.out.println(pizzaController.groupByPrice());
     }
 }
