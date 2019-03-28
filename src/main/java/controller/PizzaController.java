@@ -20,4 +20,17 @@ public class PizzaController {
                                 .sum()))
                 .get();
     }
+
+    public Pizza findMostExpensiveVegetarian() {
+        return Arrays.stream(Pizza.values())
+                .filter(pizza -> pizza.getIngredients()
+                        .stream()
+                        .noneMatch(Ingredient::isMeat))
+                .max(Comparator.comparingInt(pizza ->
+                        pizza.getIngredients()
+                                .stream()
+                                .mapToInt(Ingredient::getPrice)
+                                .sum()))
+                .get();
+    }
 }
