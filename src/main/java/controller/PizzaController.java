@@ -8,16 +8,19 @@ import java.util.Comparator;
 
 public class PizzaController {
 
+    private Integer pricePizza(Pizza pizza) {
+        return pizza.getIngredients()
+                .stream()
+                .mapToInt(Ingredient::getPrice)
+                .sum();
+    }
+
     public Pizza findCheapestSpicy() {
         return Arrays.stream(Pizza.values())
                 .filter(pizza -> pizza.getIngredients()
                         .stream()
                         .anyMatch(Ingredient::isSpicy))
-                .min(Comparator.comparingInt(pizza ->
-                        pizza.getIngredients()
-                                .stream()
-                                .mapToInt(Ingredient::getPrice)
-                                .sum()))
+                .min(Comparator.comparingInt(pizza -> pricePizza(pizza)))
                 .get();
     }
 
@@ -26,11 +29,7 @@ public class PizzaController {
                 .filter(pizza -> pizza.getIngredients()
                         .stream()
                         .noneMatch(Ingredient::isMeat))
-                .max(Comparator.comparingInt(pizza ->
-                        pizza.getIngredients()
-                                .stream()
-                                .mapToInt(Ingredient::getPrice)
-                                .sum()))
+                .max(Comparator.comparingInt(pizza -> pricePizza(pizza)))
                 .get();
     }
 }
