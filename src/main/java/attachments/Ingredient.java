@@ -1,4 +1,4 @@
-package lab.pizza;
+package attachments;
 
 public enum Ingredient {
     THIN_CRUST("cienkie ciasto", 12, false, false),

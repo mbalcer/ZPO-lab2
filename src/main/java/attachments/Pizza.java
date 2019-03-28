@@ -1,9 +1,9 @@
-package lab.pizza;
+package attachments;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static lab.pizza.Ingredient.*;
+import static attachments.Ingredient.*;
 
 public enum Pizza {
     MARGHERITA("Marrgherita", THIN_CRUST, TOMATO_SUACE,
@@ -37,16 +37,16 @@ public enum Pizza {
             CHICKEN, BECON, ONION, CORN);
 
     private final String name;
-    private final List<lab.pizza.Ingredient> ingredients;
+    private final List<Ingredient> ingredients;
 
-    private Pizza(String name, lab.pizza.Ingredient... ingredients) {
+    private Pizza(String name, Ingredient... ingredients) {
         this.name = name;
         this.ingredients = Arrays.asList(ingredients);
     }
     public String getName() {
         return name;
     }
-    public List<lab.pizza.Ingredient> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
     @Override
