@@ -41,15 +41,11 @@ public class PizzaController {
                 .filter(pizza -> pizza.getIngredients()
                         .stream()
                         .anyMatch(Ingredient::isMeat))
-                .sorted((o1, o2) ->
-                        (int) o2.getIngredients()
-                                .stream()
-                                .filter( Ingredient::isMeat)
-                                .count()
-                                - (int) o1.getIngredients()
-                                .stream()
-                                .filter(Ingredient::isMeat)
-                                .count())
+                .sorted(Comparator.comparing(pizza ->
+                        pizza.getIngredients()
+                             .stream()
+                             .filter(Ingredient::isMeat)
+                             .count(), Comparator.reverseOrder()))
                 .collect(Collectors.toList());
     }
 
