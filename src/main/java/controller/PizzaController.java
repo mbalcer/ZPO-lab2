@@ -53,4 +53,18 @@ public class PizzaController {
         return Arrays.stream(Pizza.values())
                 .collect(Collectors.groupingBy(PizzaController::pricePizza));
     }
+
+    public String formatedMenu() {
+        return Arrays.stream(Pizza.values())
+                .map(pizza -> {
+                    return String.format("%s: %s - %d",
+                            pizza.getName(),
+                            pizza.getIngredients()
+                                    .stream()
+                                    .map(Ingredient::getName)
+                                    .collect(Collectors.joining(",")),
+                            pricePizza(pizza));
+                })
+                .collect(Collectors.joining("\n"));
+    }
 }
